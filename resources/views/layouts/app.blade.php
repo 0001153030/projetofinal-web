@@ -22,7 +22,11 @@
                             <a href="{{ route('redirect', ['section' => 'gallery']) }}" class="px-3 py-2 rounded hover:bg-sky-100">Galeria</a>
                             <a href="{{ route('redirect', ['section' => 'about']) }}" class="px-3 py-2 rounded hover:bg-sky-100">Sobre</a>
                             <a href="{{ route('redirect', ['section' => 'contact']) }}" class="px-3 py-2 rounded hover:bg-sky-100">Contato</a>
+                            <a href="{{ route('users.index') }}" class="px-3 py-2 rounded hover:bg-sky-100">Contas</a>
                         </nav>
+                        <div class="ml-4">
+                            <a href="{{ route('users.create') }}" class="inline-block px-3 py-2 bg-white border border-sky-200 text-sky-700 rounded hover:bg-sky-50">Registrar</a>
+                        </div>
         </div>
     </header>
 

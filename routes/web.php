@@ -43,7 +43,16 @@ Route::get("/contact", function () {
     return view("pages.contact");
 })->name("contact");
 
-// A single redirect endpoint that routes to the named pages above.
+// Measurements CRUD
+Route::resource(
+    "measurements",
+    App\Http\Controllers\MeasurementController::class,
+);
+
+// User accounts CRUD
+Route::resource("users", App\Http\Controllers\UserController::class);
+
+// A single redirect endpoint that routes to the named pages above;
 Route::get("/redirect/{section}", function (string $section) use ($pages) {
     if (!array_key_exists($section, $pages)) {
         abort(404);
