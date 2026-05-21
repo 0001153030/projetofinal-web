@@ -1,4 +1,4 @@
-FROM php:8.3-apache
+FROM php:8.4-apache
 # Define a imagem base do PHP 8.3 com Apache
 RUN apt-get update && apt-get install -y \
 git \
