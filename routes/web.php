@@ -57,17 +57,18 @@ use Illuminate\Http\Request;
 // Admin routes: protected by HTTP Basic (ADMIN_PASSWORD)
 Route::middleware([App\Http\Middleware\AdminBasicAuth::class])
     ->prefix("admin")
+    ->name("admin.")
     ->group(function () {
         // Users management (admin only)
         Route::resource(
-            "admin/users",
+            "users",
             App\Http\Controllers\UserController::class,
         );
 
         // Admin landing (admin.home) at /admin
         Route::get("/", function () {
             return redirect()->route("admin.users.index");
-        })->name("admin.home");
+        })->name("home");
     });
 
 // Keep old AdminAuthController routes removed — admin uses HTTP Basic now.
