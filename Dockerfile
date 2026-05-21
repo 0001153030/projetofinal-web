@@ -15,6 +15,17 @@ WORKDIR /var/www/html
 # Define a pasta principal da aplicação
 
 COPY . .
+# Install Node.js (required for Vite)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm ci
+# Copy the rest of the app (or specific asset sources)
+COPY resources/ ./resources/
+COPY vite.config.js ./
+# Build assets (this creates public/build/manifest.json)
+RUN npm run build
 # Copia todos os arquivos do projeto para dentro do container
 RUN composer update
 RUN composer install --no-dev --optimize-autoloader
