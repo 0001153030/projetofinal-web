@@ -49,8 +49,28 @@ Route::resource(
     App\Http\Controllers\MeasurementController::class,
 );
 
-// User accounts CRUD
-Route::resource("users", App\Http\Controllers\UserController::class);
+// User accounts CRUD moved to admin section (password protected)
+
+use App\Http\Controllers\AdminAuthController;
+use Illuminate\Http\Request;
+
+// Admin routes: protected by HTTP Basic (ADMIN_PASSWORD)
+Route::middleware([App\Http\Middleware\AdminBasicAuth::class])
+    ->prefix("admin")
+    ->group(function () {
+        // Users management (admin only)
+        Route::resource(
+            "admin/users",
+            App\Http\Controllers\UserController::class,
+        );
+
+        // Admin landing (admin.home) at /admin
+        Route::get("/", function () {
+            return redirect()->route("admin.users.index");
+        })->name("admin.home");
+    });
+
+// Keep old AdminAuthController routes removed — admin uses HTTP Basic now.
 
 // A single redirect endpoint that routes to the named pages above;
 Route::get("/redirect/{section}", function (string $section) use ($pages) {

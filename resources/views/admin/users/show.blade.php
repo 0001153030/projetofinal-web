@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Conta')
 
@@ -18,8 +18,8 @@
         </dl>
 
         <div class="mt-4 text-right">
-            <a href="{{ route('users.edit', $user) }}" class="px-3 py-2 bg-sky-600 text-white rounded">Editar</a>
-            <a href="{{ route('users.index') }}" class="px-3 py-2 ml-2">Voltar</a>
+            <a href="{{ route('admin.users.edit', $user) }}" class="px-3 py-2 bg-sky-600 text-white rounded">Editar</a>
+            <a href="{{ route('admin.users.index') }}" class="px-3 py-2 ml-2">Voltar</a>
         </div>
     </div>
 @endsection

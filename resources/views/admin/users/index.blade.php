@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Contas')
 
@@ -6,7 +6,7 @@
     <div class="bg-white p-6 rounded shadow">
         <div class="flex items-center justify-between mb-4">
             <h1 class="text-lg font-semibold text-sky-600">Contas</h1>
-            <a href="{{ route('users.create') }}" class="px-3 py-2 bg-sky-600 text-white rounded">Nova conta</a>
+            <a href="{{ route('admin.users.create') }}" class="px-3 py-2 bg-sky-600 text-white rounded">Nova conta</a>
         </div>
 
         @if(session('success'))
@@ -29,9 +29,9 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td class="text-right">
-                            <a href="{{ route('users.show', $user) }}" class="text-sky-600 mr-2">Ver</a>
-                            <a href="{{ route('users.edit', $user) }}" class="text-sky-600 mr-2">Editar</a>
-                            <form action="{{ route('users.destroy', $user) }}" method="POST" class="inline-block" onsubmit="return confirm('Remover?')">
+                            <a href="{{ route('admin.users.show', $user) }}" class="text-sky-600 mr-2">Ver</a>
+                            <a href="{{ route('admin.users.edit', $user) }}" class="text-sky-600 mr-2">Editar</a>
+                            <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="inline-block" onsubmit="return confirm('Remover?')">
                                 @csrf
                                 @method('DELETE')
                                 <button class="text-red-600">Apagar</button>
