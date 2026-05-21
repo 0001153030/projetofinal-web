@@ -1,5 +1,5 @@
 FROM php:8.4-apache
-# Define a imagem base do PHP 8.3 com Apache
+# Define a imagem base do PHP 8.4 com Apache
 RUN apt-get update && apt-get install -y \
 git \
 curl \
@@ -16,9 +16,6 @@ WORKDIR /var/www/html
 
 COPY . .
 # Copia todos os arquivos do projeto para dentro do container
-RUN composer require laravel/boost --dev
-RUN composer update laravel/boost
-RUN php artisan boost:install
 RUN composer update
 RUN composer install --no-dev --optimize-autoloader
 # Instala as dependências do Projeto em modo produção
