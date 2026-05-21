@@ -9,32 +9,25 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libzip-dev \
     libmariadb-dev \
-    && docker-php-ext-install pdo pdo_mysql zip \
-    && apt-get clean
+    && docker-php-ext-install pdo pdo_mysql zip
 
 # Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Node.js
+WORKDIR /var/www/html
+
+# Copy entire app
+COPY . .
+
+# Install Node.js
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs
 
-WORKDIR /var/www/html
+# Install PHP deps
+RUN composer install --no-dev --optimize-autoloader
 
-# Copy dependency manifests first (layer caching)
-COPY package*.json composer.json composer.lock ./
-
-# Install PHP deps (no scripts yet — app code not present)
-RUN composer install --no-dev --optimize-autoloader --no-scripts
-
-# Install Node deps
-RUN npm ci
-
-# Copy the rest of the application
-COPY . .
-
-# Build frontend assets (generates public/build/manifest.json)
-RUN npm run build
+# Install frontend deps and build assets (composer must run first for @source paths)
+RUN npm ci && npm run build
 
 # Configure Laravel for production
 RUN cp .env.example .env \
@@ -42,9 +35,6 @@ RUN cp .env.example .env \
     && sed -i 's|APP_URL=.*|APP_URL=https://balancamultiuso.onrender.com|' .env \
     && sed -i 's/APP_DEBUG=.*/APP_DEBUG=false/' .env \
     && php artisan key:generate
-
-# Composer dump-autoload now that app code is present
-RUN composer dump-autoload --optimize
 
 # Permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
