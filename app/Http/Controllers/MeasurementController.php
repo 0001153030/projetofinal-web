@@ -14,7 +14,7 @@ class MeasurementController extends Controller
     {
         $measurements = Measurement::latest()->paginate(12);
 
-        return view("measurements.index", compact("measurements"));
+        return view('measurements.index', compact('measurements'));
     }
 
     /**
@@ -22,7 +22,7 @@ class MeasurementController extends Controller
      */
     public function create()
     {
-        return view("measurements.create");
+        return view('measurements.create');
     }
 
     /**
@@ -31,21 +31,21 @@ class MeasurementController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            "weight" => "nullable|numeric",
-            "systolic" => "nullable|integer",
-            "diastolic" => "nullable|integer",
-            "heart_rate" => "nullable|integer",
-            "temperature" => "nullable|numeric",
-            "spo2" => "nullable|integer|min:0|max:100",
-            "notes" => "nullable|string",
-            "measured_at" => "nullable|date",
+            'weight' => 'nullable|numeric',
+            'systolic' => 'nullable|integer',
+            'diastolic' => 'nullable|integer',
+            'heart_rate' => 'nullable|integer',
+            'temperature' => 'nullable|numeric',
+            'spo2' => 'nullable|integer|min:0|max:100',
+            'notes' => 'nullable|string',
+            'measured_at' => 'nullable|date',
         ]);
 
         Measurement::create($data);
 
         return redirect()
-            ->route("measurements.index")
-            ->with("success", "Medição criada.");
+            ->route('measurements.index')
+            ->with('success', 'Medição criada.');
     }
 
     /**
@@ -53,7 +53,7 @@ class MeasurementController extends Controller
      */
     public function show(Measurement $measurement)
     {
-        return view("measurements.show", compact("measurement"));
+        return view('measurements.show', compact('measurement'));
     }
 
     /**
@@ -61,7 +61,7 @@ class MeasurementController extends Controller
      */
     public function edit(Measurement $measurement)
     {
-        return view("measurements.edit", compact("measurement"));
+        return view('measurements.edit', compact('measurement'));
     }
 
     /**
@@ -70,21 +70,21 @@ class MeasurementController extends Controller
     public function update(Request $request, Measurement $measurement)
     {
         $data = $request->validate([
-            "weight" => "nullable|numeric",
-            "systolic" => "nullable|integer",
-            "diastolic" => "nullable|integer",
-            "heart_rate" => "nullable|integer",
-            "temperature" => "nullable|numeric",
-            "spo2" => "nullable|integer|min:0|max:100",
-            "notes" => "nullable|string",
-            "measured_at" => "nullable|date",
+            'weight' => 'nullable|numeric',
+            'systolic' => 'nullable|integer',
+            'diastolic' => 'nullable|integer',
+            'heart_rate' => 'nullable|integer',
+            'temperature' => 'nullable|numeric',
+            'spo2' => 'nullable|integer|min:0|max:100',
+            'notes' => 'nullable|string',
+            'measured_at' => 'nullable|date',
         ]);
 
         $measurement->update($data);
 
         return redirect()
-            ->route("measurements.index")
-            ->with("success", "Medição atualizada.");
+            ->route('measurements.index')
+            ->with('success', 'Medição atualizada.');
     }
 
     /**
@@ -95,7 +95,7 @@ class MeasurementController extends Controller
         $measurement->delete();
 
         return redirect()
-            ->route("measurements.index")
-            ->with("success", "Medição removida.");
+            ->route('measurements.index')
+            ->with('success', 'Medição removida.');
     }
 }

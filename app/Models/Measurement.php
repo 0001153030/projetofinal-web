@@ -10,23 +10,23 @@ class Measurement extends Model
     use HasFactory;
 
     protected $fillable = [
-        "weight",
-        "systolic",
-        "diastolic",
-        "heart_rate",
-        "temperature",
-        "spo2",
-        "notes",
-        "measured_at",
+        'weight',
+        'systolic',
+        'diastolic',
+        'heart_rate',
+        'temperature',
+        'spo2',
+        'notes',
+        'measured_at',
     ];
 
     protected $casts = [
-        "weight" => "float",
-        "systolic" => "integer",
-        "diastolic" => "integer",
-        "heart_rate" => "integer",
-        "temperature" => "float",
-        "spo2" => "integer",
-        "measured_at" => "datetime",
+        'weight' => 'float',
+        'systolic' => 'integer',
+        'diastolic' => 'integer',
+        'heart_rate' => 'integer',
+        'temperature' => 'float',
+        'spo2' => 'integer',
+        'measured_at' => 'datetime',
     ];
 }

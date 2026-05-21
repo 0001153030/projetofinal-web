@@ -3,8 +3,8 @@
 @section('title', 'Início')
 
 @section('content')
-    <div class="max-w-4xl mx-auto p-0 md:p-0 bg-gradient-to-br from-sky-100 via-white to-sky-50 rounded-2xl shadow-xl overflow-hidden border border-sky-100">
-        <div class="bg-sky-600 text-white px-8 py-8 md:py-10 text-center shadow-md">
+    <div class="max-w-4xl mx-auto bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl shadow-lg border border-sky-100 dark:border-gray-800 overflow-hidden">
+        <div class="bg-sky-600 dark:bg-sky-700 text-white px-8 py-8 md:py-10 text-center shadow-md">
           <span class="inline-flex items-center gap-2 text-3xl font-bold tracking-tight">
             <svg xmlns='http://www.w3.org/2000/svg' class='inline w-8 h-8 text-white/80' fill='none' viewBox='0 0 24 24' stroke='currentColor'><circle cx='12' cy='12' r='10' stroke-width='2' /><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 12h8M12 8v8' /></svg>
             Balança Multiuso
@@ -12,9 +12,9 @@
           <div class="text-sky-100 text-base mt-2 font-normal">Peso, pressão, batimentos, temperatura e oxigênio em um só gesto</div>
         </div>
         <div class="px-6 md:px-12 py-8">
-        <p class="text-gray-700 mb-6">No mercado já existem balanças que vão além do peso. A nossa diferença está em como elas fazem isso: em vez de complicar, simplificamos. Você sobe na plataforma e, sem braçadeiras, sem botões extras e sem precisar alternar entre aparelhos, recebe de uma vez peso, pressão, batimentos, temperatura e saturação de oxigênio, com a mesma naturalidade de sempre se pesar. Entre tantas soluções, essa é a alternativa que escolheu focar na experiência real de quem quer monitorar a saúde sem perder tempo.</p>
+        <p class="text-gray-700 dark:text-gray-300 mb-6">No mercado já existem balanças que vão além do peso. A nossa diferença está em como elas fazem isso: em vez de complicar, simplificamos. Você sobe na plataforma e, sem braçadeiras, sem botões extras e sem precisar alternar entre aparelhos, recebe de uma vez peso, pressão, batimentos, temperatura e saturação de oxigênio, com a mesma naturalidade de sempre se pesar. Entre tantas soluções, essa é a alternativa que escolheu focar na experiência real de quem quer monitorar a saúde sem perder tempo.</p>
 
-        <div class="prose prose-sky max-w-none mb-8 text-lg">
+        <div class="prose prose-sky dark:prose-invert max-w-none mb-8 text-lg">
           <ul>
             <li>
               <strong>Monitoramento completo em um só momento</strong><br>
@@ -36,9 +36,9 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-            <a href="{{ route('redirect', ['section' => 'features']) }}" class="block p-4 bg-sky-50 border border-sky-100 rounded-md text-center text-sky-700">Funcionalidades</a>
-            <a href="{{ route('redirect', ['section' => 'gallery']) }}" class="block p-4 bg-sky-50 border border-sky-100 rounded-md text-center text-sky-700">Galeria</a>
-            <a href="{{ route('redirect', ['section' => 'about']) }}" class="block p-4 bg-sky-50 border border-sky-100 rounded-md text-center text-sky-700">Sobre</a>
+            <a href="{{ route('redirect', ['section' => 'features']) }}" class="block p-4 bg-sky-50 dark:bg-sky-900/50 border border-sky-100 dark:border-sky-800 rounded-xl text-center text-sky-700 dark:text-sky-300 hover:bg-sky-100 dark:hover:bg-sky-900/80 transition-colors">Funcionalidades</a>
+            <a href="{{ route('redirect', ['section' => 'gallery']) }}" class="block p-4 bg-sky-50 dark:bg-sky-900/50 border border-sky-100 dark:border-sky-800 rounded-xl text-center text-sky-700 dark:text-sky-300 hover:bg-sky-100 dark:hover:bg-sky-900/80 transition-colors">Galeria</a>
+            <a href="{{ route('redirect', ['section' => 'about']) }}" class="block p-4 bg-sky-50 dark:bg-sky-900/50 border border-sky-100 dark:border-sky-800 rounded-xl text-center text-sky-700 dark:text-sky-300 hover:bg-sky-100 dark:hover:bg-sky-900/80 transition-colors">Sobre</a>
         </div>
     </div>
 @endsection

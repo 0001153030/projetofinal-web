@@ -19,10 +19,10 @@ class AdminAuthController extends Controller
 
         $adminPassword = env('ADMIN_PASSWORD', 'admin');
 
-        if (hash_equals((string)$adminPassword, (string)$request->input('password'))) {
+        if (hash_equals((string) $adminPassword, (string) $request->input('password'))) {
             $request->session()->put('is_admin', true);
 
-                    return redirect()->route('admin.home');
+            return redirect()->route('admin.home');
         }
 
         return back()->withErrors(['password' => 'Senha incorreta'])->withInput();
@@ -32,6 +32,6 @@ class AdminAuthController extends Controller
     {
         $request->session()->forget('is_admin');
 
-            return redirect()->route('admin.login');
+        return redirect()->route('admin.login');
     }
 }

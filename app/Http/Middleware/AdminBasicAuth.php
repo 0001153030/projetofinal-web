@@ -24,8 +24,9 @@ class AdminBasicAuth
         $pass = $request->getPassword();
 
         // Accept any username, check only password for simplicity
-        if (!hash_equals((string)$password, (string)$pass)) {
+        if (! hash_equals((string) $password, (string) $pass)) {
             $headers = ['WWW-Authenticate' => 'Basic realm="Admin Area"'];
+
             return response('Authentication Required', Response::HTTP_UNAUTHORIZED, $headers);
         }
 
