@@ -54,10 +54,17 @@ Route::resource(
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\UserController;
-use App\Http\Middleware\AdminBasicAuth;
+use App\Http\Middleware\AdminAuth;
 
-// Admin routes: protected by HTTP Basic (ADMIN_PASSWORD)
-Route::middleware([AdminBasicAuth::class])
+// Admin login routes (no auth)
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('login.post');
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+});
+
+// Admin routes (protected by session auth)
+Route::middleware([AdminAuth::class])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
@@ -72,8 +79,6 @@ Route::middleware([AdminBasicAuth::class])
             return redirect()->route('admin.users.index');
         })->name('home');
     });
-
-// Keep old AdminAuthController routes removed — admin uses HTTP Basic now.
 
 // A single redirect endpoint that routes to the named pages above;
 Route::get('/redirect/{section}', function (string $section) use ($pages) {
