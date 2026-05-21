@@ -4,7 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Admin — Login</title>
-    @vite(['resources/css/app.css'])
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+        }
+        @custom-variant dark (&:where(.dark, .dark *));
+        html { transition: background-color .3s ease; }
+    </style>
 </head>
 <body class="bg-sky-50 dark:bg-gray-950 text-sky-900 dark:text-gray-100 min-h-screen flex items-center justify-center transition-colors">
     <div class="w-full max-w-sm bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-sky-100 dark:border-gray-800">

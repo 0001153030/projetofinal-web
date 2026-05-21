@@ -9,27 +9,20 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libzip-dev \
     libmariadb-dev \
-    && docker-php-ext-install pdo pdo_mysql zip
+    && docker-php-ext-install pdo pdo_mysql zip \
+    && apt-get clean
 
 # Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Copy entire app
 COPY . .
-
-# Install Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs
 
 # Install PHP deps
 RUN composer install --no-dev --optimize-autoloader
 
-# Install frontend deps and build assets (composer must run first for @source paths)
-RUN npm ci && npm run build
-
-# Configure Laravel for production
+# Configure Laravel
 RUN cp .env.example .env \
     && sed -i 's/APP_ENV=.*/APP_ENV=production/' .env \
     && sed -i 's|APP_URL=.*|APP_URL=https://balancamultiuso.onrender.com|' .env \
